@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ketan Bastola's Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+
+            margin: 0;
+
+            font-family: 'Press Start 2P', cursive;
+
+            background: black;
+
+            color: white;
+
+            overflow-x: hidden;
+
+        }
+
+
+        .section {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            flex-direction: column;
+
+            text-align: center;
+
+        }
+
+
+        .title {
+
+            font-size: 4rem;
+
+            margin-bottom: 20px;
+
+            animation: glitch 2s infinite;
+
+        }
+
+
+        @keyframes glitch {
+
+            0% { text-shadow: 2px 2px red, -2px -2px blue; }
+
+            50% { text-shadow: -2px -2px red, 2px 2px blue; }
+
+            100% { text-shadow: 2px 2px lime, -2px -2px orange; }
+
+        }
+
+
+        .button {
+
+            padding: 15px 30px;
+
+            background: crimson;
+
+            color: white;
+
+            font-size: 1.5rem;
+
+            text-transform: uppercase;
+
+            transition: transform 0.3s ease, background 0.3s ease;
+
+            border: none;
+
+            cursor: pointer;
+
+            border-radius: 10px;
+
+            animation: bounce 1.5s infinite alternate;
+
+        }
+
+
+        .button:hover {
+
+            transform: scale(1.2);
+
+            background: lime;
+
+        }
+
+
+        @keyframes bounce {
+
+            0% { transform: translateY(0); }
+
+            100% { transform: translateY(-10px); }
+
+        }
+
+
+        .skills-section {
+
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+
+            color: black;
+
+            text-align: center;
+
+            padding: 50px;
+
+        }
+
+
+        .skills {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 20px;
+
+        }
+
+
+        .skill {
+
+            background: white;
+
+            color: black;
+
+            padding: 15px 25px;
+
+            border-radius: 10px;
+
+            font-size: 1.2rem;
+
+            font-weight: bold;
+
+            transition: transform 0.3s, box-shadow 0.3s;
+
+            animation: float 3s infinite ease-in-out;
+
+            cursor: pointer;
+
+        }
+
+
+        .skill:hover {
+
+            transform: translateY(-10px) scale(1.1);
+
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+        }
+
+
+        @keyframes float {
+
+            0%, 100% { transform: translateY(0); }
+
+            50% { transform: translateY(-10px); }
+
+        }
+
+
+        .details-section {
+
+            background: black;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 50px;
+
+            display: none;
+
+            animation: fadeIn 1s ease-in-out;
+
+        }
+
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(20px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+
+        .back-button {
+
+            padding: 10px 20px;
+
+            background: crimson;
+
+            color: white;
+
+            font-size: 1rem;
+
+            border: none;
+
+            cursor: pointer;
+
+            border-radius: 5px;
+
+            margin-top: 20px;
+
+            transition: transform 0.3s ease, background 0.3s ease;
+
+        }
+
+
+        .back-button:hover {
+
+            transform: scale(1.1);
+
+            background: lime;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- First Section -->
+
+    <div class="section first-section">
+
+        <div>
+
+            <div class="title">Welcome to Ketan Bastola's Crazy World of Coding!</div>
+
+            <button class="button" onclick="scrollToSection()">Enter</button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Skills Section -->
+
+    <div class="section skills-section" id="skills-section">
+
+        <h1>My Skills</h1>
+
+        <p>Click on a skill to see more about it:</p>
+
+        <div class="skills">
+
+            <div class="skill" onclick="showDetails('python')">Python</div>
+
+            <div class="skill" onclick="showDetails('javascript')">JavaScript</div>
+
+            <div class="skill" onclick="showDetails('php')">PHP</div>
+
+            <div class="skill" onclick="showDetails('htmlcss')">HTML & CSS</div>
+
+            <div class="skill" onclick="showDetails('react')">React</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Details Section -->
+
+    <div class="section details-section" id="details-section">
+
+        <div id="details-content"></div>
+
+        <button class="back-button" onclick="backToSkills()">Back</button>
+
+    </div>
+
+
+    <script>
+
+        // Scroll to the skills section
+
+        function scrollToSection() {
+
+            const section = document.getElementById('skills-section');
+
+            section.scrollIntoView({ behavior: 'smooth' });
+
+        }
+
+
+        // Show details for a specific skill
+
+        function showDetails(skill) {
+
+            const detailsSection = document.getElementById('details-section');
+
+            const skillsSection = document.getElementById('skills-section');
+
+            const detailsContent = document.getElementById('details-content');
+
+
+            // Skill details
+
+            const skillDetails = {
+
+                python: `
+
+                    <h1>Python</h1>
+
+                    <p>With Python, I can build data-driven applications, automate boring tasks, and create AI models.</p>
+
+                    <h3>Projects:</h3>
+
+                    <ul>
+
+                        <li>Snake AI: A bot that beats Snake effortlessly.</li>
+
+                        <li>Auto-Meme Generator: Generates memes with a single click.</li>
+
+                    </ul>
+
+                `,
+
+                javascript: `
+
+                    <h1>JavaScript</h1>
+
+                    <p>JavaScript powers the interactivity of the web. I use it to create dynamic and engaging user experiences.</p>
+
+                    <h3>Projects:</h3>
+
+                    <ul>
+
+                        <li>Interactive Portfolio: This very website!</li>
+
+                        <li>Tic-Tac-Toe: Multiplayer fun in the browser.</li>
+
+                    </ul>
+
+                `,
+
+                php: `
+
+                    <h1>PHP</h1>
+
+                    <p>PHP allows me to develop robust backend systems for dynamic websites.</p>
+
+                    <h3>Projects:</h3>
+
+                    <ul>
+
+                        <li>Personal Blog: A custom CMS for blogging.</li>
+
+                        <li>Random Cat API: A fun API delivering cat images.</li>
+
+                    </ul>
+
+                `,
+
+                htmlcss: `
+
+                    <h1>HTML & CSS</h1>
+
+                    <p>The foundation of all websites. I use them to create visually stunning pages.</p>
+
+                    <h3>Projects:</h3>
+
+                    <ul>
+
+                        <li>Crazy Animations: Fun designs with pure CSS.</li>
+
+                        <li>Portfolio Layout: This very portfolio's structure.</li>
+
+                    </ul>
+
+                `,
+
+                react: `
+
+                    <h1>React</h1>
+
+                    <p>React is my go-to for building modern, fast, and scalable web applications.</p>
+
+                    <h3>Projects:</h3>
+
+                    <ul>
+
+                        <li>To-Do App: A powerful app with React and hooks.</li>
+
+                        <li>Weather Dashboard: Real-time weather updates.</li>
+
+                    </ul>
+
+                `
+
+            };
+
+
+            // Show content for the selected skill
+
+            detailsContent.innerHTML = skillDetails[skill];
+
+
+            // Hide skills section and show details section
+
+            skillsSection.style.display = 'none';
+
+            detailsSection.style.display = 'flex';
+
+        }
+
+
+        // Go back to the skills section
+
+        function backToSkills() {
+
+            const detailsSection = document.getElementById('details-section');
+
+            const skillsSection = document.getElementById('skills-section');
+
+
+            // Show skills section and hide details section
+
+            detailsSection.style.display = 'none';
+
+            skillsSection.style.display = 'flex';
+
+        }
+
+    </script>
+
+</body>
+
+</html>
